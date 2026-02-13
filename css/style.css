@@ -1,0 +1,64 @@
+body {
+  background-color: #6AAB9A;
+  /* Flexbox Centering Magic */
+  display: flex;
+  justify-content: center; /* Horizontal center */
+  align-items: center;     /* Vertical center */
+  min-height: 100vh;       /* Full viewport height */
+  margin: 0;               /* Remove default browser margins */
+}
+
+/* 1. Container - Defines the size and 3D stage */
+.flip-card {
+  display: block;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+  cursor: pointer;
+  /* Margins are no longer needed because Flexbox handles the centering */
+}
+
+/* 2. Hide the checkbox functionality visually */
+.flip-checkbox {
+  display: none;
+}
+
+/* 3. The Moving Part - Holds both faces */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* 4. The Flip Logic */
+.flip-checkbox:checked + .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* 5. Common styles for both faces */
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* 6. Image handling */
+.card-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 7. Specific positioning for the Back face */
+.card-back {
+  transform: rotateY(180deg);
+}
